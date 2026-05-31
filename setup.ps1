@@ -20,7 +20,7 @@ function Write-Err($msg)  { Write-Host "  ✗ $msg" -ForegroundColor Red }
 Clear-Host
 Write-Host ""
 Write-Host "  ╔══════════════════════════════════════╗" -ForegroundColor Magenta
-Write-Host "  ║       AI Dev Stack — Team Setup      ║" -ForegroundColor Magenta
+Write-Host "  ║         CLAN NXT AI Dev Stack        ║" -ForegroundColor Magenta
 Write-Host "  ╚══════════════════════════════════════╝" -ForegroundColor Magenta
 Write-Host ""
 Write-Host "  This script sets up:" -ForegroundColor White
