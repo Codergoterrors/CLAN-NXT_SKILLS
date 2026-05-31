@@ -1,0 +1,12 @@
+# FreeLLMAPI
+freellmapi/.env
+freellmapi/node_modules/
+freellmapi/server/data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
