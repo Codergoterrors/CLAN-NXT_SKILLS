@@ -37,8 +37,8 @@ Works with **Cursor**, **Codex**, and **Antigravity** — globally across every 
 
 ```powershell
 # 1. Clone this repo
-git clone https://github.com/YOUR_USERNAME/ai-dev-stack.git
-cd ai-dev-stack
+git clone https://github.com/Codergoterrors/CLAN-NXT_SKILLS.git
+cd CLAN-NXT_SKILLS
 
 # 2. Run the setup script
 powershell -ExecutionPolicy Bypass -File setup.ps1
