@@ -149,22 +149,67 @@ In Antigravity, verify GSD:
 
 ---
 
-## GSD Workflow (inside Antigravity)
+## GSD Workflow
 
-GSD turns Antigravity into a spec-driven, multi-agent system that **ships real features** instead of vibing.
+GSD turns your AI coding agent into a spec-driven, multi-agent system that **ships real features** instead of vibing.
+
+### ⚠️ Important: `agy` CLI vs Claude Code
+
+`agy` CLI v1.0.3 (the current version) **does not support user-defined slash commands**.  
+GSD slash commands like `/gsd-new-project` only work natively in **Claude Code**.
+
+| Tool | How GSD works |
+|---|---|
+| **Claude Code** (`claude`) | Native slash commands: `/gsd-new-project`, `/gsd-progress`, etc. |
+| **Cursor / Codex** | Native slash commands — same as Claude Code |
+| **`agy` CLI** | No slash commands — use **natural language** in the chat (see below) |
+
+---
+
+### Using GSD in `agy` (natural language)
+
+GSD's skills ARE loaded as context in `agy`. Just describe your intent in chat:
 
 ```
-/gsd-new-project       → Questions → Research → Requirements → Roadmap
-/gsd-discuss-phase 1   → Lock in your preferences before planning
-/gsd-plan-phase 1      → Research + Plan + Verify (parallel agents)
-/gsd-execute-phase 1   → Execute plans in parallel waves
-/gsd-verify-work 1     → Manual UAT — walk through what was built
-/gsd-ship 1            → Create a PR with auto-generated body
-/gsd-progress          → Auto-detect next step / see where you are
+# Instead of /gsd-new-project, type:
+Follow the GSD workflow. This is an existing codebase. Run the
+gsd-new-project workflow — ask me questions about what we're building
+and who it's for.
+
+# Instead of /gsd-progress, type:
+Follow GSD. Run gsd-progress — tell me where we are and what to do next.
+
+# Instead of /gsd-plan-phase 1, type:
+Follow GSD. Run gsd-plan-phase for phase 1.
+
+# Instead of /gsd-execute-phase 1, type:
+Follow GSD. Run gsd-execute-phase for phase 1.
+```
+
+The AI has the full GSD skill set loaded — it just needs you to reference GSD by name.
+
+---
+
+### Using GSD in Claude Code (full slash command support)
+
+```bash
+claude   # open Claude Code in your project folder
+```
+
+Then use slash commands directly:
+
+```
+/gsd-new-project        → Questions → Research → Requirements → Roadmap
+/gsd-discuss-phase 1    → Lock in your preferences before planning
+/gsd-plan-phase 1       → Research + Plan + Verify (parallel agents)
+/gsd-execute-phase 1    → Execute plans in parallel waves
+/gsd-verify-work 1      → Manual UAT — walk through what was built
+/gsd-ship 1             → Create a PR with auto-generated body
+/gsd-progress           → Auto-detect next step / see where you are
 /gsd-complete-milestone → Archive, tag, start next version
 ```
 
-> **GSD is global** — once installed, it's available in every Antigravity session automatically.
+> **GSD is global** — once installed, it's available in every session automatically.
 
 ---
 
