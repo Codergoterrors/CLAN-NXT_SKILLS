@@ -19,6 +19,7 @@ One-command setup for a full AI-powered development environment.
 | 🔥 **FreeLLMAPI** | ~1B free tokens/month from 6 providers behind one endpoint |
 | ⚡ **RTK** | Saves 60–90% of tokens by compressing CLI output |
 | 🚀 **Antigravity CLI** | Google's `agy` terminal coding agent |
+| 🧠 **GSD** | Get Shit Done — spec-driven, multi-agent workflow system |
 
 Works with **Cursor**, **Codex**, and **Antigravity** — globally across every project.
 
@@ -44,7 +45,7 @@ cd CLAN-NXT_SKILLS
 powershell -ExecutionPolicy Bypass -File setup.ps1
 ```
 
-Then follow **Steps 2–5** below for the parts that need manual input.
+Then follow **Steps 2–6** below for the parts that need manual input.
 
 ---
 
@@ -55,6 +56,7 @@ The script handles automatically:
 - ✅ RTK install via winget
 - ✅ RTK init for Cursor, Codex, Gemini/Antigravity
 - ✅ Antigravity CLI install
+- ✅ GSD install for Antigravity (globally via `npx @opengsd/gsd-core@latest`)
 - ✅ `StartFreeLLMAPI.bat` copied to Desktop
 
 ---
@@ -126,6 +128,11 @@ rtk gain                    # should show "No tracking data yet"
 agy --version               # should show version number
 ```
 
+In Antigravity, verify GSD:
+```
+/gsd-help                   # should list all GSD commands
+```
+
 ---
 
 ## Daily Use
@@ -134,8 +141,43 @@ agy --version               # should show version number
 |---|---|
 | Start FreeLLMAPI | Double-click `StartFreeLLMAPI.bat` on Desktop |
 | Check token savings | `rtk gain` |
-| Init RTK for new Antigravity project | `rtk init --agent antigravity` (run once per project) |
+| Init RTK for new Antigravity project | `rtk init --agent antigravity` (run once per project folder) |
 | Update Antigravity | `agy update` |
+| Update GSD | `npx @opengsd/gsd-core@latest --antigravity --global` |
+| Start a new project with GSD | `/gsd-new-project` (inside Antigravity) |
+| Resume where you left off | `/gsd-progress` (inside Antigravity) |
+
+---
+
+## GSD Workflow (inside Antigravity)
+
+GSD turns Antigravity into a spec-driven, multi-agent system that **ships real features** instead of vibing.
+
+```
+/gsd-new-project       → Questions → Research → Requirements → Roadmap
+/gsd-discuss-phase 1   → Lock in your preferences before planning
+/gsd-plan-phase 1      → Research + Plan + Verify (parallel agents)
+/gsd-execute-phase 1   → Execute plans in parallel waves
+/gsd-verify-work 1     → Manual UAT — walk through what was built
+/gsd-ship 1            → Create a PR with auto-generated body
+/gsd-progress          → Auto-detect next step / see where you are
+/gsd-complete-milestone → Archive, tag, start next version
+```
+
+> **GSD is global** — once installed, it's available in every Antigravity session automatically.
+
+---
+
+## RTK + Antigravity Projects
+
+RTK's global Gemini integration is already set up by `setup.ps1`.  
+For **each new project folder** you open in Antigravity, run once:
+
+```powershell
+rtk init --agent antigravity
+```
+
+This creates `.agents/rules/antigravity-rtk-rules.md` in that project, which tells Antigravity to use RTK commands automatically. Takes 2 seconds.
 
 ---
 
@@ -148,9 +190,11 @@ RTK (compresses output, saves 60-90% of tokens)
     ↓ powers
 Cursor / Codex / Antigravity
     ↓ guided by
+GSD (spec-driven workflow — plan → execute → verify)
+    ↓ guided by
 Impeccable + Taste Skill + Emil Kowalski skills
     ↓ produces
-Polished websites that don't look AI-generated
+Polished, well-architected features that don't look AI-generated
 ```
 
 ---
@@ -161,6 +205,7 @@ Polished websites that don't look AI-generated
 - **FreeLLMAPI** is for personal/experimental use only — swap in a paid API before shipping to production
 - **Antigravity** uses Google's own Gemini API directly — it doesn't route through FreeLLMAPI
 - **RTK** on Windows uses instructions mode (not full auto-rewrite) — prefix commands with `rtk` manually or let the agent do it
+- **GSD** installs globally to `~/.gemini/antigravity/skills/` — no per-project setup needed (just `rtk init --agent antigravity` per project for RTK)
 
 ---
 
@@ -177,3 +222,9 @@ Polished websites that don't look AI-generated
 
 **RTK `gain` shows wrong version**
 > Another package named `rtk` exists on crates.io. If you installed via cargo, uninstall and reinstall via winget: `winget install --id rtk-ai.rtk`
+
+**GSD commands not showing in Antigravity**
+> Restart Antigravity after install. GSD installs to `~/.gemini/antigravity/skills/gsd-*/`. If still missing, re-run: `npx @opengsd/gsd-core@latest --antigravity --global`
+
+**GSD `npx` install fails during setup**
+> Run manually after setup: `npx @opengsd/gsd-core@latest --antigravity --global`
